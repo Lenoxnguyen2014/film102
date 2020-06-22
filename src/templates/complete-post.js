@@ -2,10 +2,10 @@ import React from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
-// This blog-post is Film post ( any movies with links)
+// This complete-post is project post that is completed ( any movies with links)
 
-export default function BlogPost({ data }) {
-  const post = data.allWordpressPost.edges[0].node
+export default function CompletePost({ data }) {
+  const post = data.allWordpressWpCompletionprojects.edges[0].node
   return (
     <Layout>
       <div className="container">
@@ -17,6 +17,7 @@ export default function BlogPost({ data }) {
         <div className="column">
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <p className="level-right">{post.date}</p>
+
         </div>
         </div>
       </div>
@@ -26,7 +27,7 @@ export default function BlogPost({ data }) {
 
 export const query = graphql`
   query($slug: String!) {
-    allWordpressPost(filter: { slug: { eq: $slug } }) {
+    allWordpressWpCompletionprojects(filter: { slug: { eq: $slug } }) {
       edges {
         node {
            date( formatString: "YYYY-MM-DD" )

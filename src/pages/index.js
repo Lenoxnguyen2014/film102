@@ -1,63 +1,25 @@
 import React from "react"
-import {Link, graphql } from "gatsby"
+import "./mystyle.scss"
 import Layout from "../components/layout"
-import Img from "gatsby-image"
-import Image from "../components/image"
-import SEO from "../components/seo"
 
-function IndexPage({data}) {
-  //add feature images
-  // const imagesResolutions = data.allWordpressPost.edges.map(
-  //   edge=>
-  //   edge.node.featured_media.localFile.childImageSharp.resolutions
-  // )
-  
-  return(
-  <Layout>
-    <SEO title="Home" />
-    <h1>Film company</h1>
-    <h4>Posts</h4>
-    {data.allWordpressPost.edges.map(({ node }) => (
-    <div key={node.slug}>
-    <Link to={node.slug}>
-      <p>{node.title}</p>
-      <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
-      </Link>
-          <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+const IndexPage = () => {
+  return (
+    <Layout>
+    <div className="container">
+      <div className="columns">
+        <div className="column">
+          <h2 className="title is-2">Level 2 heading</h2>
+          <p className="content">Cool content. Using Bulma!</p>
         </div>
-      ))}
-  </Layout>
-  )
-  }
 
-export const pageQuery = graphql`
-query Posts {
-  allWordpressPost {
-    edges {
-      node {
-        date( formatString: "YYYY-MM-DD" )
-        featured_media  {
-            localFile{
-                childImageSharp {
-                  fluid(maxWidth: 500, quality:100) {
-                    ...GatsbyImageSharpFluid
-                    ...GatsbyImageSharpFluidLimitPresentationSize
-                  }
-                  resolutions(width: 500, height: 500) {
-                    ...GatsbyImageSharpResolutions_withWebp_tracedSVG
-                  }
-                        fixed {
-            ...GatsbyImageSharpFixed
-                  }
-                } 
-            }
-        }
-        title
-        excerpt
-        slug
-      }
-    }
-  }
+        <div className="column is-four-fifths">
+          <h2 className="title is-2">Level 2 heading</h2>
+          <p className="content">This column is cool too!</p>
+        </div>
+      </div>
+    </div>
+    </Layout>
+  )
 }
-`
+
 export default IndexPage

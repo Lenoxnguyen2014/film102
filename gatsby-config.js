@@ -59,6 +59,9 @@ module.exports = {
           "**/tags",
           "**/taxonomies",
           "**/users",
+          "**/completionprojects",
+          "**/developingprojects",
+          "**/productionprojects"
         ],
         excludedRoutes: [],
         normalizer: function ({ entities }) {
@@ -80,7 +83,15 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    {
+    `gatsby-plugin-sass`,
+    { resolve: 'gatsby-plugin-theme-ui',
+      options: {
+        prismPreset: 'night-owl',
+        preset: '@theme-ui/preset-funk',
+        basePath: `/`,
+
+      }},    
+      {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `gatsby-starter-default`,

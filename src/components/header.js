@@ -1,69 +1,27 @@
-import React from "react"
+import React, {useState} from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 
-const activeStyles = {
-  background: 'white',
-  color:  "rebeccapurple"
-}
 const Header = ({ siteTitle, menuLinks }) => (
-  <header
-    style={{
-      background: "rebeccapurple",
-      marginBottom: "1.rem",
-    }}
-  >
-    <div
-      style={{
-        background: "rebeccapurple",
-        marginBottom: "1.45rem",
-      }}
-    >
-      <div
-        style={{
-          margin: "0 auto",
-          maxWidth: 960,
-          padding: "1.45rem 1.0875rem",
-          display: "flex",
-          justifyItems: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h1 style={{ margin: 0, flex: 1 }}>
-          <Link to="/"
-            style={{
-              color: "white",
-              textDecoration: "none",
-            }}
-            // activeStyles={activeStyles}
-            activeClassName="active"
-
-          >
+    <nav class="navbar" role="navigation" aria-label="main navigation column">
+            <Link to="/" className="title is-1">
             {siteTitle}
           </Link>
-        </h1>
-        <div>
-          <nav>
-            <ul style={{ display: "flex", flex: 1 }}>
+
+          <nav class="navbar-menu is-active column">
+            <ul className="columns">
               {menuLinks.map(link => (
-                <li
+                <li className="column "
                   key={link.name}
-                  style={{
-                    listStyleType: `none`,
-                    padding: `1rem`,
-                  }}
                 >
-                  <Link style={{ color: `white` }} activeStyles={{activeStyles}} to={link.Link}>
+                  <Link to={link.Link} className="title is-4">
                     {link.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
-        </div>
-      </div>
-    </div>
-  </header>
+        </nav>
 )
 
 Header.propTypes = {
