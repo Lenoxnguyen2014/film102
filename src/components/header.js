@@ -1,28 +1,25 @@
 import React, {useState} from "react"
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-
-const Header = ({ siteTitle, menuLinks }) => (
-    <nav class="navbar" role="navigation" aria-label="main navigation column">
-            <Link to="/" className="title is-1">
+import {Burger} from "./Burger"
+function Header({ siteTitle, menuLinks }) {
+  return(
+    <nav className="navbar">
+            <Link to="/" className="nav-item is-brand title is-2">
             {siteTitle}
           </Link>
-
-          <nav class="navbar-menu is-active column">
-            <ul className="columns">
+          <nav className="navbar-end" >
               {menuLinks.map(link => (
-                <li className="column "
-                  key={link.name}
-                >
-                  <Link to={link.Link} className="title is-4">
+                <p key={link.name}>
+                  <Link to={link.Link} className="navbar-item title is-5">
                     {link.name}
                   </Link>
-                </li>
+                </p>
               ))}
-            </ul>
           </nav>
         </nav>
-)
+  )
+}
 
 Header.propTypes = {
   siteTitle: PropTypes.string,

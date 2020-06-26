@@ -5,7 +5,6 @@ import SEO from "../components/seo"
 import Img from "gatsby-image"
 import "../pages/mystyle.scss"
 
-
 function Page({ data }) {
     const page = data.allWordpressPage.edges[0].node
     return(
