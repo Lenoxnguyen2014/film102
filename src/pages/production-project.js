@@ -15,9 +15,9 @@ function ProductionProject({data}){
             </div>
             
             {data.allWordpressWpProductionprojects.edges.map(({node}) => (
-                <div key = {node.slug} className="column">
-                <Link to = {node.slug}>
-                    <p className="title is-4">{node.title}</p>
+                <div key = {'/projects/production-project/' + node.slug} className="column">
+                <Link to = {'/projects/production-project/' + node.slug}>
+                    <p className="title is-4 level-item">{node.title}</p>
                     <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
                 </Link>
                 </div>

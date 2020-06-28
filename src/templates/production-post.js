@@ -17,7 +17,6 @@ export default function ProductionPost({ data }) {
         <div className="column">
         <div dangerouslySetInnerHTML={{ __html: post.content }} />
         <p className="level-right">{post.date}</p>
-
         </div>
         </div>
 

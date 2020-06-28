@@ -5,7 +5,8 @@ import Img from "gatsby-image"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
-const CompleteProject = ({data}) => (
+function CompleteProject({data}) {
+  return(
   <Layout>
     <SEO title="Complete Project" />
     <div className="container">
@@ -14,9 +15,9 @@ const CompleteProject = ({data}) => (
     <h1 className="title is-2">Complete Project</h1>
       </div>
     {data.allWordpressWpCompletionprojects.edges.map(({ node }) => (
-    <div key={node.slug} className="column">
-    <Link to={node.slug}>
-      <p className="title is-4">{node.title}</p>
+    <div key={'/projects/complete-project/' + node.slug} className="column">
+    <Link to={'/projects/complete-project/' + node.slug}>
+      <p className="title is-4 level-item">{node.title}</p>
       <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
       </Link>
 
@@ -25,7 +26,8 @@ const CompleteProject = ({data}) => (
       </div>
       </div>
   </Layout>
-)
+  )
+    }
 
 export const pageQuery = graphql`
 query completePosts{

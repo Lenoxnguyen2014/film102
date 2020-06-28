@@ -14,12 +14,11 @@ function DevProject({data}){
             <h1 className="title is-2">Developing Project </h1>
             </div>
             {data.allWordpressWpDevelopingprojects.edges.map(({node}) => (
-                <div key = {node.slug} className="column">
-                <Link to = {node.slug}>
-                    <p>{node.title}</p>
+                <div key = {'/projects/developing-project/' + node.slug} className="column">
+                <Link to = {'/projects/developing-project/' + node.slug}>
+                    <p className="title is-4 level-item">{node.title}</p>
                     <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
                 </Link>
-                <p>{node.status}</p>
                 </div>
 
             ))}

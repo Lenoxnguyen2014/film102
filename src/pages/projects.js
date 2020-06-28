@@ -33,9 +33,9 @@ function Projects({data}){
                </div>
                {data.allWordpressWpCompletionprojects.edges.map(({ node }) => (
       <div key={node.slug} className="column">
-      <Link to={node.slug}>
+      <Link to={'complete-project/' + node.slug}>
         <h4 className="title is-4 level-item">{node.title}</h4>
-        <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
+        <Img key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
         </Link>
             <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
           </div>
@@ -48,7 +48,7 @@ function Projects({data}){
                </div>
                {data.allWordpressWpProductionprojects.edges.map(({ node }) => (
       <div key={node.slug} className="column">
-      <Link to={node.slug}>
+      <Link to={'production-project/' + node.slug}>
         <h4 className="title is-4 level-item">{node.title}</h4>
         <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
         </Link>
@@ -64,7 +64,7 @@ function Projects({data}){
                </div>
                {data.allWordpressWpDevelopingprojects.edges.map(({ node }) => (
       <div key={node.slug} className="column">
-      <Link to={node.slug}>
+      <Link to={'/projects/developing-project/' + node.slug}>
         <h4 className="title is-4 level-item">{node.title}</h4>
         <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
         </Link>
@@ -80,7 +80,7 @@ function Projects({data}){
 
 export const pageQuery = graphql `
 query Projects{
-    allWordpressWpCompletionprojects(sort: { fields: [date] }) {
+    allWordpressWpCompletionprojects(limit:2, sort: { fields: [date] }) {
         edges {
           node {
                 title
@@ -103,7 +103,7 @@ query Projects{
           }
         }
       }
-      allWordpressWpDevelopingprojects(sort: { fields: [date] })  {
+      allWordpressWpDevelopingprojects(limit:2, sort: { fields: [date] })  {
         edges {
           node {
             slug
@@ -125,7 +125,7 @@ query Projects{
           }
         }
       }
-      allWordpressWpProductionprojects(sort: { fields: [date] })  {
+      allWordpressWpProductionprojects(limit:2 ,sort: { fields: [date] })  {
         edges {
           node {
             slug

@@ -87,6 +87,9 @@ sup {
 img {
   border-style: none;
 }
+img:hover {
+  opacity: 0.3;
+}
 svg:not(:root) {
   overflow: hidden;
 }

@@ -19,6 +19,9 @@ module.exports = {
       },{
         name: 'our-services',
         Link: '/our-services'
+      },{
+        name: 'contact-us',
+        Link: '/contact-us'
       }
     ]
   },
@@ -58,7 +61,9 @@ module.exports = {
           "**/users",
           "**/completionprojects",
           "**/developingprojects",
-          "**/productionprojects"
+          "**/productionprojects",
+          "**/staff",
+          "**/partners"
         ],
         excludedRoutes: [],
         normalizer: function ({ entities }) {
@@ -105,6 +110,7 @@ module.exports = {
       options: {
         postCssPlugins: [require("tailwindcss"), require("autoprefixer")]
       }
-    }
+    },   
+    `gatsby-plugin-styled-components`,
   ],
 }

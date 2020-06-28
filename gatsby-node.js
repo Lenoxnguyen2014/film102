@@ -35,7 +35,7 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        allWordpressPost(limit:2 , sort: { fields: [date] }) {
+        allWordpressPost(sort: { fields: [date] }) {
           edges {
             node {
               title
@@ -45,7 +45,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-      allWordpressWpCompletionprojects(limit:2,sort: { fields: [date] }) {
+      allWordpressWpCompletionprojects(sort: { fields: [date] }) {
         edges {
           node {
                 title
@@ -55,7 +55,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      allWordpressWpDevelopingprojects(limit:2,sort: { fields: [date] })  {
+      allWordpressWpDevelopingprojects(sort: { fields: [date] })  {
         edges {
           node {
             slug
@@ -65,7 +65,7 @@ exports.createPages = ({ graphql, actions }) => {
           }
         }
       }
-      allWordpressWpProductionprojects(limit:2, sort: { fields: [date] })  {
+      allWordpressWpProductionprojects(sort: { fields: [date] })  {
         edges {
           node {
             slug
@@ -104,7 +104,7 @@ exports.createPages = ({ graphql, actions }) => {
       }),
       result.data.allWordpressWpCompletionprojects.edges.forEach(({ node }) => {
         createPage({
-          path: `projects/` + node.slug,
+          path: `/projects/complete-project/` + node.slug,
           component: path.resolve(`./src/templates/complete-post.js`),
           context: {
             // This is the $slug variable
@@ -115,7 +115,7 @@ exports.createPages = ({ graphql, actions }) => {
       }),
       result.data.allWordpressWpDevelopingprojects.edges.forEach(({ node }) => {
         createPage({
-          path: `projects/` + node.slug,
+          path: `/projects/developing-project/` + node.slug,
           component: path.resolve(`./src/templates/dev-post.js`),
           context: {
             // This is the $slug variable
@@ -126,7 +126,7 @@ exports.createPages = ({ graphql, actions }) => {
       }),
       result.data.allWordpressWpProductionprojects.edges.forEach(({ node }) => {
         createPage({
-          path: `projects/` + node.slug,
+          path: `/projects/production-project/` + node.slug,
           component: path.resolve(`./src/templates/production-post.js`),
           context: {
             // This is the $slug variable
