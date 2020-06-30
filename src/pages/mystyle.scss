@@ -6,7 +6,8 @@ $family-primary: "family-sans-serif";
 $link: #FF69B4;
 $navbar-padding-horizontal: 2rem;
 $card-color: "white";
-
+$pagination-active-border-color: "blue";
+$pagination-current-background-color: "blue";
 @import "~bulma/bulma.sass";
 @import "node_modules/bulma/sass/utilities/initial-variables";
 

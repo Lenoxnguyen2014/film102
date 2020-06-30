@@ -35,7 +35,9 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        allWordpressPost(sort: { fields: [date] }) {
+        allWordpressPost(sort: { fields: [date] }
+          limit: 1000
+          ) {
           edges {
             node {
               title
@@ -77,10 +79,28 @@ exports.createPages = ({ graphql, actions }) => {
       }
     }
     `).then(
+      //render list of post films for pagination
       result => {
+      const films = result.data.allWordpressPost.edges
+      const filmsPerPage = 3
+      const numPages = Math.ceil(films.length / filmsPerPage)
+      Array.from({ length: numPages }).forEach((_, i) => {
+        createPage({
+          path: i === 0 ? `/films` : `/films/${i + 1}`,
+          component: path.resolve(`./src/pages/films.js`),
+          context: {
+            limit: filmsPerPage,
+            skip: i * filmsPerPage,
+            numPages,
+            currentPage: i + 1,
+          },
+        })
+      }),
+      // render each post films
+      Array.from({ length: numPages }).forEach((_, i) => {
       result.data.allWordpressPost.edges.forEach(({ node }) => {
         createPage({
-          path: '/films/' + node.slug,
+          path: `films/` + node.slug,
           component: path.resolve(`./src/templates/blog-post.js`),
           context: {
             // This is the $slug variable
@@ -88,7 +108,8 @@ exports.createPages = ({ graphql, actions }) => {
             slug: node.slug,
           },
         })
-      }),  
+      })
+    }),  
       result.data.allWordpressPage.edges.forEach(({ node }) => {
         createPage({
           path: node.slug,

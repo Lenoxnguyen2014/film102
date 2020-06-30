@@ -6,6 +6,7 @@ import Img from "gatsby-image"
 
 export default function BlogPost({ data }) {
   const post = data.allWordpressPost.edges[0].node
+  console.log({data})
   return (
     <Layout>
       <div className="container">

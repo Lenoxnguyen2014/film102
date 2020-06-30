@@ -15,7 +15,7 @@ function Projects({data}){
     return(
         <Layout>
         <div className="container">
-          <a href="/search" className="title is-3" style={{  position: "fixed", top: "4em", right: "0"}}>Quick Search</a>
+          <a href="/search" className="title is-3" style={{  position: "fixed", top: "4em", right: "0"}}>Search</a>
             <div id='completeProject' className="columns">
               <div className="column">
                <h1 className="title is-2">Complete Project</h1>

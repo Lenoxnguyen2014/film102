@@ -6,7 +6,6 @@ import Video from "./video"
 function Header({ siteTitle, menuLinks }) {
   return(
     <nav className="navbar">
-      
             <Link to="/" className="nav-item is-brand title is-2">
             {siteTitle}
           </Link>
