@@ -9,9 +9,10 @@ export default function CompletePost({ data }) {
   return (
     <Layout>
       <div className="container">
+      <h1 className="title is-2 level-left">{post.title}</h1>
+
       <div className="columns">
         <div className="column">
-        <h1 className="title is-2 level-item">{post.title}</h1>
         <Img  fixed={post.featured_media.localFile.childImageSharp.fixed} />
         </div>
         <div className="column">

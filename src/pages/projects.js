@@ -3,44 +3,34 @@ import {Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import Img from "gatsby-image"
 import SEO from "../components/seo"
+import Search from "./search"
 
-export const flexBox = {
-    display: "flex",
-    justifyContent: 'space-evenly'
-}
 
-export const project ={
-    margin: 5,
-    padding: 5,
-    display: 'center'
+export const quickSearch ={
+  position: "fixed",
+  top: "0",
+  left: "0"
 }
 function Projects({data}){
     return(
         <Layout>
         <div className="container">
-            <div className="columns">
-              <div className="column">
-            <h1 className="title is-4">Search your project</h1>
-            </div>
-            <div className="column">
-            <input type="text" className="level-item is-primary" placeholder="Search" size="45"  />
-            </div>
-            </div>
-            <br />
+          <a href="/search" className="title is-3" style={{  position: "fixed", top: "4em", right: "0"}}>Quick Search</a>
             <div id='completeProject' className="columns">
               <div className="column">
                <h1 className="title is-2">Complete Project</h1>
                </div>
                {data.allWordpressWpCompletionprojects.edges.map(({ node }) => (
       <div key={node.slug} className="column">
-      <Link to={'complete-project/' + node.slug}>
+      <Link to={node.slug}>
         <h4 className="title is-4 level-item">{node.title}</h4>
         <Img key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
         </Link>
             <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
           </div>
         ))}
-           <a href='/complete-project' className="level-item">Read more</a>
+           <a href='/complete-project' className="level-left">Read more</a>
+       
          </div>
          <div id='productionProject' className="columns">
          <div className="column">
@@ -48,7 +38,7 @@ function Projects({data}){
                </div>
                {data.allWordpressWpProductionprojects.edges.map(({ node }) => (
       <div key={node.slug} className="column">
-      <Link to={'production-project/' + node.slug}>
+      <Link to={ node.slug}>
         <h4 className="title is-4 level-item">{node.title}</h4>
         <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
         </Link>
@@ -56,7 +46,7 @@ function Projects({data}){
           </div>
           
         ))}
-         <a href='/production-project' className="level-item">Read more</a>
+         <a href='/production-project' className="level-left">Read more</a>
         </div>
          <div id='developingProject' className="columns">
                 <div className="column">
@@ -64,22 +54,23 @@ function Projects({data}){
                </div>
                {data.allWordpressWpDevelopingprojects.edges.map(({ node }) => (
       <div key={node.slug} className="column">
-      <Link to={'/projects/developing-project/' + node.slug}>
+      <Link to={ node.slug}>
         <h4 className="title is-4 level-item">{node.title}</h4>
         <Img  key={node.featured_media.localFile.childImageSharp.resolutions.src} fluid={node.featured_media.localFile.childImageSharp.fluid}/>
         </Link>
             <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
           </div>
         ))}
-           <a href='/developing-project' className="level-item">Read more</a>
+           <a href='/developing-project' className="level-left">Read more</a>
         </div>
          </div>
+        
         </Layout>
     )
 }
 
 export const pageQuery = graphql `
-query Projects{
+query ProjectsPost{
     allWordpressWpCompletionprojects(limit:2, sort: { fields: [date] }) {
         edges {
           node {
@@ -89,12 +80,12 @@ query Projects{
                 featured_media {
                     localFile {
                       childImageSharp {
-                        fluid(maxWidth:500, quality:100){
+                        fluid(maxWidth:350, quality:100){
                           ...GatsbyImageSharpFluid
                           ...GatsbyImageSharpFluidLimitPresentationSize
           
                         }
-                        resolutions(width: 500, height: 500) {
+                        resolutions(width:350, height: 500) {
                           ...GatsbyImageSharpResolutions_withWebp_tracedSVG
                         }
                       }
@@ -112,11 +103,11 @@ query Projects{
             featured_media {
                 localFile {
                   childImageSharp {
-                      fluid(maxWidth:500, quality:100){
+                      fluid(maxWidth:350, quality:100){
                           ...GatsbyImageSharpFluid
                           ...GatsbyImageSharpFluidLimitPresentationSize
                       }
-                      resolutions(width:500, height:500){
+                      resolutions(width:350, height:500){
                           ...GatsbyImageSharpResolutions_withWebp_tracedSVG
                       }
                   }
@@ -133,11 +124,11 @@ query Projects{
             featured_media {
                 localFile {
                   childImageSharp {
-                    fluid(maxWidth: 500, quality:100){
+                    fluid(maxWidth: 350, quality:100){
                       ...GatsbyImageSharpFluid
                       ...GatsbyImageSharpFluidLimitPresentationSize
                     }
-                    resolutions(width:500, height: 500){
+                    resolutions(width:350, height: 500){
                       ...GatsbyImageSharpResolutions_withWebp_tracedSVG
                     }
                   }

@@ -1,8 +1,103 @@
+require("dotenv").config(
+  {path: `.env.${process.env.NODE_ENV}`}
+)
+
+const completeProjectsQuery = `{
+  allWordpressWpCompletionprojects {
+    edges {
+      node {
+        id
+        type
+        title
+        content
+        slug
+        featured_media {
+          localFile {
+            childImageSharp {
+              id
+              resolutions {
+                src
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}`
+
+const productionProjectsQuery = `{
+  allWordpressWpProductionprojects {
+    edges {
+      node {
+        id
+        type
+        content
+        title
+        slug
+        featured_media {
+          localFile {
+            childImageSharp {
+              id
+              resolutions {
+                src
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+}`
+
+const developingProjectsQuery = `{
+  allWordpressWpDevelopingprojects {
+    edges {
+      node {
+        id
+        type
+        title
+        content
+        slug
+        featured_media {
+          localFile {
+            childImageSharp {
+              id
+              resolutions {
+                src
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+const queries = [
+  {
+    query: completeProjectsQuery,
+    transformer: ({ data }) => data.allWordpressWpCompletionprojects.edges.map(({ node }) => node),
+    indexName: 'dev_post'
+  },
+  {
+    query: productionProjectsQuery,
+    transformer: ({ data }) => data.allWordpressWpProductionprojects.edges.map(({ node }) => node),
+    indexName: 'dev_post'
+  },
+  {
+    query: developingProjectsQuery,
+    transformer: ({ data }) => data.allWordpressWpDevelopingprojects.edges.map(({ node }) => node),
+    indexName: 'dev_post'
+  }
+];
 module.exports = {
   siteMetadata: {
-    title: `Filming project`,
+    title: `Vector Services`,
     description: `An new site for represent filming project.`,
     author: `@lenguyen`,
+    
     menuLinks:[
       {
         name: 'about-us',
@@ -20,17 +115,28 @@ module.exports = {
         name: 'our-services',
         Link: '/our-services'
       },{
+        name: 'staff',
+        Link: '/staff'
+      },
+      {
         name: 'contact-us',
         Link: '/contact-us'
       }
     ]
   },
   plugins: [
-    // https://public-api.wordpress.com/wp/v2/sites/gatsbyjsexamplewordpress.wordpress.com/pages/
-    /*
-     * Gatsby's data processing layer begins with “source”
-     * plugins. Here the site sources its data from WordPress.
-     */
+    
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries,
+        chunkSize: 10000, // default: 1000
+        enablePartialUpdates: true,
+        matchFields: ['slug', 'modified'] 
+      },
+    },
     {
       resolve: `gatsby-source-wordpress`,
       options: {
@@ -104,13 +210,27 @@ module.exports = {
         display: `minimal-ui`,
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
-    },
-    {
-      resolve: `gatsby-plugin-postcss`,
-      options: {
-        postCssPlugins: [require("tailwindcss"), require("autoprefixer")]
-      }
-    },   
+    }, 
     `gatsby-plugin-styled-components`,
+    "gatsby-plugin-transition-link",
+    "gatsby-remark-embed-video",
+    "gatsby-remark-responsive-iframe",
+    {
+      resolve: "gatsby-remark-embed-video",
+      options: {
+        width: 800,
+        ratio: 1.77, // Optional: Defaults to 16/9 = 1.77
+        height: 400, // Optional: Overrides optional.ratio
+        related: false, //Optional: Will remove related videos from the end of an embedded YouTube video.
+        noIframeBorder: true, //Optional: Disable insertion of <style> border: 0
+        urlOverrides: [
+          {
+            id: 'youtube',
+            embedURL: (videoId) => `https://www.youtube-nocookie.com/embed/${videoId}`,
+          }
+        ], //Optional: Override URL of a service provider, e.g to enable youtube-nocookie support
+        containerClass: 'embedVideo-container', //Optional: Custom CSS class for iframe container, for multiple classes separate them by space
+      }
+    }
   ],
 }

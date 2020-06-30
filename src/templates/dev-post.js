@@ -9,9 +9,9 @@ export default function DevPost({ data }) {
   return (
     <Layout>
       <div class="container">
+      <h1 className="title is-2 level-left">{post.title}</h1>
         <div class="columns">
           <div class="column">
-        <h1 className="title is-2 level-item">{post.title}</h1>
         <Img  fixed={post.featured_media.localFile.childImageSharp.fixed} />
         </div>
         <div class="column">

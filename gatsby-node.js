@@ -78,7 +78,6 @@ exports.createPages = ({ graphql, actions }) => {
     }
     `).then(
       result => {
-      
       result.data.allWordpressPost.edges.forEach(({ node }) => {
         createPage({
           path: '/films/' + node.slug,
@@ -104,7 +103,7 @@ exports.createPages = ({ graphql, actions }) => {
       }),
       result.data.allWordpressWpCompletionprojects.edges.forEach(({ node }) => {
         createPage({
-          path: `/projects/complete-project/` + node.slug,
+          path: `/projects/` + node.slug,
           component: path.resolve(`./src/templates/complete-post.js`),
           context: {
             // This is the $slug variable
@@ -115,7 +114,7 @@ exports.createPages = ({ graphql, actions }) => {
       }),
       result.data.allWordpressWpDevelopingprojects.edges.forEach(({ node }) => {
         createPage({
-          path: `/projects/developing-project/` + node.slug,
+          path: `/projects/` + node.slug,
           component: path.resolve(`./src/templates/dev-post.js`),
           context: {
             // This is the $slug variable
@@ -126,7 +125,7 @@ exports.createPages = ({ graphql, actions }) => {
       }),
       result.data.allWordpressWpProductionprojects.edges.forEach(({ node }) => {
         createPage({
-          path: `/projects/production-project/` + node.slug,
+          path: `/projects/` + node.slug,
           component: path.resolve(`./src/templates/production-post.js`),
           context: {
             // This is the $slug variable

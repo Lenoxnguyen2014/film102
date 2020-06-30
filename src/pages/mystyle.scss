@@ -1,8 +1,12 @@
 @charset "utf-8";
-$title-color: #FF69B4;
+
+$title-color:'$grey-dark';
 $size-1: 3rem;
 $family-primary: "family-sans-serif";
 $link: #FF69B4;
 $navbar-padding-horizontal: 2rem;
+$card-color: "white";
 
 @import "~bulma/bulma.sass";
+@import "node_modules/bulma/sass/utilities/initial-variables";
+
