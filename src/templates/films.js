@@ -8,7 +8,7 @@ import Pagination from "../components/pagination"
 
 function Films({data,pageContext}) {
     // get this from node js
-    console.log({pageContext})
+    console.log({data})
     return(
     <Layout>
       <h2 className="title is-2 level-item">Official Films</h2>
@@ -17,7 +17,7 @@ function Films({data,pageContext}) {
       <div className="columns">
       {data.allWordpressPost.edges.map(({ node }) => (
       <div key={node.slug}>
-      <Link to={"/films/" + node.slug} replace>
+      <Link to={"/films/" + node.slug} >
         <div className="column">
         <p className="title is-4 level-item">{node.title}</p>
         </div>
@@ -38,7 +38,7 @@ function Films({data,pageContext}) {
     }
   
   export const pageQuery = graphql`
-  query Posts($skip: Int!, $limit: Int!){
+  query Posts($skip: Int!=3, $limit: Int!){
     allWordpressPost(
       sort: { fields: date, order: DESC }
       limit: $limit

@@ -19,10 +19,8 @@ exports.onCreateNode = ({ node, getNode, actions }) => {
   }
 }
 const createPaginatedPages = require('gatsby-paginate')
+const { node } = require('prop-types')
 
-// create page template for page
-// create page template for each post
-// create page template for each post project( production, developing, and completion)
 exports.createPages = ({ graphql, actions }) => {
     const { createPage } = actions
     return graphql(`
@@ -35,7 +33,8 @@ exports.createPages = ({ graphql, actions }) => {
               }
             }
           }
-        allWordpressPost(sort: { fields: [date] }
+        allWordpressPost(
+          sort: { fields: [date] }
           limit: 1000
           ) {
           edges {
@@ -87,7 +86,7 @@ exports.createPages = ({ graphql, actions }) => {
       Array.from({ length: numPages }).forEach((_, i) => {
         createPage({
           path: i === 0 ? `/films` : `/films/${i + 1}`,
-          component: path.resolve(`./src/pages/films.js`),
+          component: path.resolve(`./src/templates/films.js`),
           context: {
             limit: filmsPerPage,
             skip: i * filmsPerPage,
@@ -118,7 +117,6 @@ exports.createPages = ({ graphql, actions }) => {
             // This is the $slug variable
             // passed to page.js
             id: node.wordpress_id,
-
           },
         })
       }),
