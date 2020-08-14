@@ -46,7 +46,7 @@ function IndexPage({data}) {
     </figure>
   <div class="card-content is-overlay level-item ">
     <p class="title is-1 has-background-success-light">
-      Vector Services
+      Film company
     </p>
   </div>
   <br/>
