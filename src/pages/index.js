@@ -42,7 +42,7 @@ function IndexPage({data}) {
     <>
     <div className="card" >
     <figure className="image is-16by9">
-    <Video  videoSrcURL="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"/>
+    <Video  videoSrcURL="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4" controls preload="true" autoplay loop muted playsinline/>
     </figure>
   <div class="card-content is-overlay level-item ">
     <p class="title is-1 ">
@@ -94,23 +94,23 @@ function IndexPage({data}) {
       <h2 className="title is-2 level-item">Our partners</h2>
       <div className="columns ">
           <div className="column">            
-          <Img  key={partner_1.featured_media.localFile.childImageSharp.resolutions.src} fluid={partner_1.featured_media.localFile.childImageSharp.fluid}  objectFit="contain"
+          <Img  key={partner_1.featured_media.localFile.childImageSharp.resolutions.src} fixed={partner_1.featured_media.localFile.childImageSharp.fixed}  objectFit="cover"
           objectPosition="50% 50%"
           alt=""/>
             </div>
             <div className="column">            
-            <Img  key={partner_2.featured_media.localFile.childImageSharp.resolutions.src} fluid={partner_2.featured_media.localFile.childImageSharp.fluid}  objectFit="contain"
+            <Img  key={partner_2.featured_media.localFile.childImageSharp.resolutions.src} fixed={partner_2.featured_media.localFile.childImageSharp.fixed}  objectFit="cover"
           objectPosition="50% 50%"
           alt=""/>
             </div>
         <div className="column">            
-            <Img  key={partner_3.featured_media.localFile.childImageSharp.resolutions.src} fluid={partner_3.featured_media.localFile.childImageSharp.fluid}  objectFit="contain"
-          objectPosition="50% 50%"
+            <Img  key={partner_3.featured_media.localFile.childImageSharp.resolutions.src} fixed={partner_3.featured_media.localFile.childImageSharp.fixed}  objectFit="cover"
+          objectPosition="40% 40%"
           alt=""/>
             </div>
             <div class="column">            
-            <Img  key={partner_4.featured_media.localFile.childImageSharp.resolutions.src} fluid={partner_4.featured_media.localFile.childImageSharp.fluid}  objectFit="contain"
-          objectPosition="50% 50%"
+            <Img  key={partner_4.featured_media.localFile.childImageSharp.resolutions.src} fixed={partner_4.featured_media.localFile.childImageSharp.fixed}  objectFit="cover"
+          objectPosition="40% 40%"
           alt=""/>
             </div>
         </div>
@@ -240,14 +240,14 @@ query Pages{
         featured_media {
           localFile {
             childImageSharp {
-              fluid(maxWidth: 500, quality:100) {
+              fluid(maxWidth: 240, quality:100) {
                 ...GatsbyImageSharpFluid
                 ...GatsbyImageSharpFluidLimitPresentationSize
               }
               resolutions(width: 500, height: 500) {
                 ...GatsbyImageSharpResolutions_withWebp_tracedSVG
               }
-              fixed(width: 250, height: 250) {
+              fixed(width: 215, height: 150) {
                 ...GatsbyImageSharpFixed
                       }
             }
