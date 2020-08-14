@@ -45,7 +45,7 @@ function IndexPage({data}) {
     <Video  videoSrcURL="https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4"/>
     </figure>
   <div class="card-content is-overlay level-item ">
-    <p class="title is-1 has-background-success-light">
+    <p class="title is-1 ">
       Film company
     </p>
   </div>
